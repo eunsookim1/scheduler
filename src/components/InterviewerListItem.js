@@ -17,7 +17,7 @@ console.log(interviewer);
   return (
     <li 
     className={className}
-    onClick={() => props.setInterviewer(interviewer.id)}
+    onClick={props.setInterviewer}
     >
       <img
         className="interviewers__item-image"
