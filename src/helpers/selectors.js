@@ -11,13 +11,19 @@ export function getAppointmentsForDay(state, day) {
     const appointmentsArr = arrayOfApptIds.map((appointmentId) => {
      return state.appointments[appointmentId];
     });
-  
+    // console.log('appointmentArr:', appointmentsArr);
     return appointmentsArr;
-
   }
 }
 
 
 export function getInterview(state, interview) {
-  
-}
+  if (!interview) {
+    return null; // Return null if the interview is null or not provided.
+  }
+
+  const interviewerId = interview.interviewer;
+  const interviewer = state.interviewers[interviewerId];
+
+  return interviewer ? { ...interview, interviewer } : null;
+  };
