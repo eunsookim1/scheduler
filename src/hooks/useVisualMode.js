@@ -8,9 +8,12 @@ export default function useVisualMode (initial) {
     if (replace) {
       setMode(newMode)
       setHistory(prevHistory => [...prevHistory.slice(0,-1), newMode]);
+      // if the original arr = [FIRST, SECOND]
+      // afterwards, [FIRST, THIRD]
     } else {
       setMode(newMode)
       setHistory(prevHistory => [...prevHistory, newMode]);
+
     }
   }
 
@@ -25,7 +28,6 @@ export default function useVisualMode (initial) {
       setHistory(newHistory);
     }
   }
-
-
-  return { mode, transition, back }
+  
+  return { mode, transition, back, history }
 };
