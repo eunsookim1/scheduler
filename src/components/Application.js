@@ -17,6 +17,24 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   })
+
+  const bookInterview = (id, interview) => {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({ ...state, appointments });
+    // console.log('appointmentId:', id, 'interview:', interview);
+    // console.log('appointment:', appointment);
+  }
+
   
   useEffect(() => {
     Promise.all([
@@ -50,6 +68,7 @@ export default function Application(props) {
         {...appointment}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
         //new code:
         // id={appointment.id}
         // time={appointment.time}
