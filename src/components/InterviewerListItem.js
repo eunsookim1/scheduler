@@ -12,7 +12,7 @@ export default function InterviewerListItem (props) {
   //   props.setInterviewer(interviewer.id);
   // };
   
-console.log(interviewer);
+// console.log(interviewer);
 
   return (
     <li 
