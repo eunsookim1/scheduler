@@ -5,17 +5,43 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
+import axios from 'axios';
 
 export default function Appointment (props) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
+
+
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    const url = `/api/appointments/${props.id}`
+
+    // Transition to the Saving mode to show the indicator
+    transition(SAVING);
+
+    axios
+    .put(url, { interview })
+    .then(() => {
+      transition()
+      props.bookInterview(props.id, interview);
+      transition(SHOW)
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
   // Initialize the useVisualMode hook with the initial mode (EMPTY in this case)
   const { mode, transition, back, history } = useVisualMode(
     props.interview? SHOW: EMPTY);
-    console.log('interviewers', props.interviewers)
+    // console.log('interviewers', props.interviewers)
 
   return (
     <>
@@ -36,6 +62,7 @@ export default function Appointment (props) {
       <Form
         interviewers={props.interviewers}
         onCancel={back}
+        onSave={save}
       />
       
     )}
