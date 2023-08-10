@@ -15,7 +15,6 @@ export default function Application(props) {
     editInterview
   } = useApplicationData();
 
-  // const setDay = day => setState({ ...state, day });
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day)
   const schedule = appointments.map((appointment) => {
@@ -35,7 +34,6 @@ export default function Application(props) {
     );
   });
 
-  // console.log(schedule);
   return (
     <main className="layout">
       <section className="sidebar">
