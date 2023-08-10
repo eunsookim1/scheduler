@@ -10,26 +10,10 @@ import axios from "axios";
 
 afterEach(cleanup);
 
-// it("defaults to Monday and changes the schedule when a new day is selected", () => {
-//   const { getByText } = render(<Application />);
-
-//   return waitForElement(() => getByText("Monday")).then(() => {
-//     fireEvent.click(getByText("Tuesday"));
-//     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-//   });
-// });
-
-// Personal note:
-// I no longer use .then anymore and have an await in front of it.
-// When i don't have any result from the function I don't necessarily have to capture anything with the await. Not assigning a const or variable.
-// I'm returning a promise in a regular JS function.
-// await only works for asynchronous functions.
-
 describe("Application", () => {
   it("changes the schedule when a new day is selected", async () => {
     // 1. Render the Application
     const { getByText } = render(<Application />);
-    // convenience function, assumes a container. It has container built into it.
 
     await waitForElement(() => getByText("Monday"));
 
@@ -51,8 +35,9 @@ describe("Application", () => {
     const empty = getByAltText(appointment, "Add")
     fireEvent.click(empty);
 
-    // const input = getByPlaceholderText(appointment, /enter student name/i)
     const input = getByPlaceholderText(appointment, "Enter Student Name")
+    // or can use: 
+    // const input = getByPlaceholderText(appointment, /enter student name/i)
 
     const event = { target: { value: "Lydia Miller-Jones" } };
     fireEvent.change(input, event);
@@ -69,7 +54,6 @@ describe("Application", () => {
     await waitForElementToBeRemoved(() => getByText(appointment, "Saving"));
 
     await waitForElement(() => queryByText(container, "Lydia Miller-Jones"));
-    // debug();
 
     const studentNameInSection = queryByText(appointment, "Lydia Miller-Jones");
     // 1st: parameter is the starting point,
@@ -89,10 +73,6 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-
-    ////////////////////////////////////////////////////////////////
-
-
   })
 
 
@@ -159,16 +139,16 @@ describe("Application", () => {
     // 6.. Click the "Save" button on the confirmation.
     fireEvent.click(getByText(appointment, "Save"))
 
-    // 6. Check that the element with the text "Saving" is displayed.
+    // 7. Check that the element with the text "Saving" is displayed.
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
-    // 7. Wait until the edited appointment is displayed.
+    // 8. Wait until the edited appointment is displayed.
     await waitForElementToBeRemoved(() => getByText(appointment, "Saving"));
 
-    // 8. Check for Lydia Miller Jones in the document
+    // 9. Check for Lydia Miller Jones in the document
     expect(queryByText(appointment, "Lydia Miller-Jones")).toBeInTheDocument();
 
-    // 9. Check that the DayListItem with the text "Monday" has the text "1 spot available"
+    // 10. Check that the DayListItem with the text "Monday" has the text "1 spot available"
     const monday = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     )
@@ -194,7 +174,6 @@ describe("Application", () => {
     const empty = getByAltText(appointment, "Add")
     fireEvent.click(empty);
 
-    // const input = getByPlaceholderText(appointment, /enter student name/i)
     const input = getByPlaceholderText(appointment, "Enter Student Name")
 
     const event = { target: { value: "Lydia Miller-Jones" } };
@@ -209,8 +188,6 @@ describe("Application", () => {
     debug();
 
     await waitForElement(() => getByText(appointment, "Unable to save"));
-
-    // await waitForElement(() => queryByText(container, "Lydia Miller-Jones"));
   });
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
@@ -241,6 +218,4 @@ describe("Application", () => {
     // expect(getByText(appointment, "Unable to delete")).toBeInTheDocument();
 
   })
-
-
 })
