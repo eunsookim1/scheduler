@@ -42,17 +42,17 @@ npm run storybook
 The following images are the screenshots of the app in use.
 
 ### Overview of All the Appointments for Monday
-The app shows all the spots remaining for each day. An empty slot is available for booking for a new appointment. Data is retrieved from the server. 
 !["Monday appointments"](https://github.com/eunsookim1/scheduler/blob/master/docs/appointments.png?raw=true)
+The app shows all the spots remaining for each day. An empty slot is available for booking for a new appointment. Data is retrieved from the server. 
 
 ### Editing an Appointment
-By clicking the edit icon, user can edit an existing appointment and change the input: student and interviewer.
 !["Edit an appointment"](https://github.com/eunsookim1/scheduler/blob/master/docs/appointments-form.png?raw=true)
+By clicking the edit icon, user can edit an existing appointment and change the input: student and interviewer.
 
 ### Delete an Appointment
-By clicking the trash icon, user can delete an existing appointment and confirm to follow through canceling the appointment. 
 !["Delete an appointment"](https://github.com/eunsookim1/scheduler/blob/master/docs/appointment-delete.png?raw=true)
+By clicking the trash icon, user can delete an existing appointment and confirm to follow through canceling the appointment. 
 
 ### Show Remaining Spots
-After canceling an appointment, the pertinent day shows 1 more available spot. 
 !["Remaining spots"](https://github.com/eunsookim1/scheduler/blob/master/docs/appointments-spots.png?raw=true)
+After canceling an appointment, the pertinent day shows 1 more available spot. 
