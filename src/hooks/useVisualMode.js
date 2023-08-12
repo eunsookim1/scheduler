@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-export default function useVisualMode (initial) {
+export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial)
   const [history, setHistory] = useState([initial]);
 
-  function transition (newMode, replace = false) {
+  function transition(newMode, replace = false) {
     if (replace) {
       setMode(newMode)
-      setHistory(prevHistory => [...prevHistory.slice(0,-1), newMode]);
+      setHistory(prevHistory => [...prevHistory.slice(0, -1), newMode]);
       // if the original arr = [FIRST, SECOND]
       // afterwards, [FIRST, THIRD]
     } else {
@@ -18,16 +18,16 @@ export default function useVisualMode (initial) {
   }
 
   function back() {
-  
-    if (history.length > 1) { 
+
+    if (history.length > 1) {
       // Only go back if there's more than one mode in history
-      const newHistory = history.slice(0,-1); 
-      // Remove the last mode from history
-      setMode(newHistory[newHistory.length -1]); 
-      // Set the mode to the previousone
-      setHistory(newHistory);
+      setHistory(prev => {
+        const newHistory = prev.slice(0, -1);
+        setMode(newHistory[newHistory.length - 1]);
+        return newHistory;
+      })
     }
   }
-  
+
   return { mode, transition, back, history }
 };
