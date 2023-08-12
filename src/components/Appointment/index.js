@@ -63,9 +63,8 @@ export default function Appointment(props) {
   }
 
   // Initialize the useVisualMode hook with the initial mode (EMPTY in this case)
-  const { mode, transition, back, history } = useVisualMode(
+  const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY);
-  // console.log('interviewers', props.interviewers)
 
   return (
     <>
